@@ -334,7 +334,7 @@ class SnakeGame:
             for score, name, date in highscore_reader('highscores.txt', limit=100):
                 scores.append((score, name, date))
             
-            scores.sort(reverse=True)
+            scores.sort(key=lambda x: x[0], reverse=True)
             top_scores = scores[:5]
             
             for i, (score, name, date) in enumerate(top_scores, 1):

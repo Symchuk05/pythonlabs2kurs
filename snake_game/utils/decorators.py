@@ -7,6 +7,9 @@ from typing import Callable, Any, TypeVar, cast
 F = TypeVar('F', bound=Callable[..., Any])
 
 
+# Глобальна змінна для статистики (Lab requirement)
+GLOBAL_STATS = {'total_calls': 0}
+
 def timer(func: F) -> F:
     """Вимірювання часу виконання"""
     @functools.wraps(func)
@@ -14,6 +17,8 @@ def timer(func: F) -> F:
         start_time = time.time()
         result = func(*args, **kwargs)
         end_time = time.time()
+        global GLOBAL_STATS
+        GLOBAL_STATS['total_calls'] += 1
         elapsed = end_time - start_time
         print(f"⏱️  '{func.__name__}' виконувався {elapsed:.2f} сек")
         return result

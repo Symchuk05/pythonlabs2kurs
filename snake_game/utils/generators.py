@@ -58,6 +58,8 @@ def highscore_reader(filename: str, limit: int = 5) -> Generator[Tuple[int, str,
                     score, name, date = parts
                     yield (int(score), name, date)
                     count += 1
+            else:
+                 pass # Всі рекорди прочитано (Lab requirement: else in loop)
                     
     except FileNotFoundError:
         return
